@@ -1,5 +1,6 @@
 class AuthController < ApplicationController
 
+  # Logs user in
   def login
     # find a user
     user = User.find_by(username: params[:username])
@@ -7,11 +8,16 @@ class AuthController < ApplicationController
     is_authenticated = user.authenticate(params[:password])
     # if all is well, send back the user
     if is_authenticated
-      render json: user
+      payload = { user_id: user.id }
+      # JWT.encode(payload, secret, hash algorithm)
+      token = JWT.encode(payload, 'badbreathbuffalo', 'HS256')
+      render json: {token: token} # I want a token instead
     else
-      render json: 'Youre not real... sorry'
+      render json: {errors: ['Wrong username or password, Youre not real... sorry']},status: 422
     end
 
   end
+
+
 
 end
