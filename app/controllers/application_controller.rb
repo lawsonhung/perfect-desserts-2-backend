@@ -8,8 +8,8 @@ class ApplicationController < ActionController::API
   # Hiding at 1:23:00, React Auth pt 2
   def secret
     # EDITOR='code --wait' rails credentials:edit
-    # Rails.application.credentials.jwt_secret
-    ENV['jwt_secret']
+    Rails.application.credentials.jwt_secret
+    # ENV['jwt_secret']
   end
 
   # Decodes a token
