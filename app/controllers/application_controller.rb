@@ -5,10 +5,12 @@ class ApplicationController < ActionController::API
   end
 
   # Local secret, sort of like server password. Used to sign JWT tokens
-  # Hiding at 1:23:00, React Auth pt 2 
+  # Hiding at 1:23:00, React Auth pt 2
   def secret
     # EDITOR='code --wait' rails credentials:edit
-    Rails.application.credentials.jwt_secret
+    # Rails.application.credentials.jwt_secret
+    # Use environmental variables for Heroku
+    ENV['jwt_secret']
   end
 
   # Decodes a token
