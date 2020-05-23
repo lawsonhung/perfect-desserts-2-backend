@@ -19,6 +19,9 @@ gem 'bcrypt', '~> 3.1.7'
 # JWT tokens: https://github.com/jwt/ruby-jwt
 gem 'jwt'
 
+# Hide API keys
+gem 'figaro'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
