@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_18_210345) do
+ActiveRecord::Schema.define(version: 2020_08_20_031754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dessert_types", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "ice_cream_order_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ice_cream_order_id"], name: "index_dessert_types_on_ice_cream_order_id"
+    t.index ["user_id"], name: "index_dessert_types_on_user_id"
+  end
+
+  create_table "ice_cream_orders", force: :cascade do |t|
+    t.string "flavor"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
